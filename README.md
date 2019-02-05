@@ -2,7 +2,7 @@
 Texas A&M course on Engineering Software as a Service
 
 #### Course Website
-[CSCE 606 Spring 2019]http://courses.cse.tamu.edu/walker/csce606/
+[CSCE 606 Spring 2019](http://courses.cse.tamu.edu/walker/csce606/)
 
 #### Virtual machine setup
 [Setting up Cloud9](https://github.com/saasbook/courseware/wiki/Setting-up-Cloud9)
