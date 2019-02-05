@@ -1,0 +1,360 @@
+Name: Jingyu Zhao
+UIN: 128003831
+Homework Github link: https://github.com/WhaleZ/CSCE606_HW/tree/master/HW1
+--------------------------------------------------------------------------------
+HW1 Code (ruby_intro.rb): 
+# When done, submit this entire file to the autograder.
+
+# Part 1
+
+def sum arr
+  # YOUR CODE HERE
+  
+  # Empty Array should return 0. 
+  if arr == []
+  	return 0
+  end
+
+  # Adding all elements from the array. 
+  sum = 0
+  for i in 0...arr.length
+  	sum += arr[i]
+  end
+  return sum
+end
+
+def max_2_sum arr
+  # YOUR CODE HERE
+  
+  # Empty array returns 0. 
+  if arr == []
+  	return 0
+  end
+  
+  # Array with only one element. 
+  if arr.length == 1
+    return arr[0]
+  end
+  # Implementing max_2_sum
+  if arr[0] > arr[1]
+    first = arr[0]
+    second = arr[1]
+  else
+    first = arr[1]
+    second = arr[0]
+  end
+  
+  for i in 2...arr.length
+    if arr[i] >= first
+      second = first
+      first = arr[i]
+    elsif arr[i] >= second and arr[i] != first
+      second = arr[i]
+    end
+  end
+  return (first + second)
+end
+
+def sum_to_n? arr, n
+  # YOUR CODE HERE
+  
+  if arr == []
+  	return false
+  end
+  
+  if arr.length == 1
+    return false
+  end
+
+  for i in 0...arr.length
+  	for j in (i + 1)...arr.length
+  		if arr[i] + arr[j] === n
+  			return true
+  		end
+  	end
+  end
+  
+  return false
+end
+
+# Part 2
+
+def hello(name)
+  # YOUR CODE HERE
+  return "Hello, #{name}";
+end
+
+def starts_with_consonant? s
+  # YOUR CODE HERE
+  return (s =~ /[bcdfghjklmnpqrstvwxyz]/i) == 0
+end
+
+def binary_multiple_of_4? s
+  # YOUR CODE HERE
+  
+  # Edge Case
+  if s == ""
+    return false
+  end
+  
+  # Implementing
+  for i in 0...s.length
+    if s[i] != "1" and s[i] != "0"
+      return false
+    end
+  end
+  
+  if s.to_i(2) % 4 == 0
+    return true
+  end
+  return false
+end
+
+# Part 3
+
+class BookInStock
+# YOUR CODE HERE
+  def initialize(isbn,price)
+    if isbn.size == 0 || price<=0
+      raise(ArgumentError)
+    end
+    @isbn = isbn
+    @price = price
+  end
+  
+  def isbn
+    @isbn
+  end
+
+  def price
+    @price
+  end
+
+  def isbn=(new_isbn)
+    @isbn = new_isbn
+  end
+
+  def price=(new_price)
+    @price = new_price
+  end
+
+  def price_as_string
+    format("$%0.2f",@price)
+  end
+   
+end
+
+--------------------------------------------------------------------------------
+Log File Part 1: 
+
+Ruby intro part 1
+  #sum
+    should be defined
+    returns correct sum [20 points]
+    works on the empty array [10 points]
+  #max_2_sum
+    should be defined
+    returns the correct sum [7 points]
+    works even if 2 largest values are the same [3 points]
+    returns zero if array is empty [10 points]
+    returns value of the element if just one element [10 points]
+  #sum_to_n
+    should be defined
+    returns true when any two elements sum to the second argument [30 points]
+    returns false for any single element array [5 points]
+    returns false for an empty array [5 points]
+
+Finished in 0.0063 seconds (files took 0.08683 seconds to load)
+12 examples, 0 failures
+
+--------------------------------------------------------------------------------
+Log File Part 2: 
+
+#hello
+  should be defined
+  The hello method returns the correct string [30 points]
+
+#starts_with_consonant?
+  should be defined
+  classifies true cases [10 points]
+  classifies false cases [10 points]
+  works on the empty string [5 points]
+  works on nonletters [5 points]
+
+#binary_multiple_of_4?
+  should be defined
+  classifies valid binary numbers [30 points] (FAILED - 1)
+  rejects invalid binary numbers [10 points] (FAILED - 2)
+
+Failures:
+
+  1) #binary_multiple_of_4? classifies valid binary numbers [30 points]
+     Failure/Error: expect(binary_multiple_of_4?(string)).to be_truthy,  "Incorrect results for input: \"#{string}\""
+       Incorrect results for input: "1010101010100"
+     # ./spec/part2_spec.rb:48:in `block (3 levels) in <top (required)>'
+     # ./spec/part2_spec.rb:47:in `each'
+     # ./spec/part2_spec.rb:47:in `block (2 levels) in <top (required)>'
+
+  2) #binary_multiple_of_4? rejects invalid binary numbers [10 points]
+     Failure/Error: expect(binary_multiple_of_4?('')).to be_falsy, 'The empty string is not a valid binary number!'
+       The empty string is not a valid binary number!
+     # ./spec/part2_spec.rb:56:in `block (2 levels) in <top (required)>'
+
+Finished in 0.01479 seconds (files took 0.08824 seconds to load)
+10 examples, 2 failures
+
+Failed examples:
+
+rspec ./spec/part2_spec.rb:46 # #binary_multiple_of_4? classifies valid binary numbers [30 points]
+rspec ./spec/part2_spec.rb:54 # #binary_multiple_of_4? rejects invalid binary numbers [10 points]
+
+
+#hello
+  should be defined
+  The hello method returns the correct string [30 points]
+
+#starts_with_consonant?
+  should be defined
+  classifies true cases [10 points]
+  classifies false cases [10 points]
+  works on the empty string [5 points]
+  works on nonletters [5 points]
+
+#binary_multiple_of_4?
+  should be defined
+  classifies valid binary numbers [30 points]
+  rejects invalid binary numbers [10 points]
+
+Finished in 0.00489 seconds (files took 0.08883 seconds to load)
+10 examples, 0 failures
+
+--------------------------------------------------------------------------------
+Log File Part 3:
+
+BookInStock
+  should be defined
+  getters and setters
+    should set ISBN [10 points] (FAILED - 1)
+    should set price [10 points] (FAILED - 2)
+    should be able to change ISBN [10 points] (FAILED - 3)
+    should be able to change price [10 points] (FAILED - 4)
+  constructor
+    should reject invalid ISBN number [10 points]
+    should reject zero price [10 points]
+    should reject negative price [10 points]
+  #price_as_string
+    should be defined (FAILED - 5)
+    should display 33.95 as "$33.95" [10 points] (FAILED - 6)
+    should display 1.1 as $1.10 [10 points] (FAILED - 7)
+    should display 20 as $20.00 [10 points] (FAILED - 8)
+
+Failures:
+
+  1) BookInStock getters and setters should set ISBN [10 points]
+     Failure/Error: before(:each)  { @book = BookInStock.new('isbn1', 33.8) }
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:11:in `initialize'
+     # ./spec/part3_spec.rb:11:in `new'
+     # ./spec/part3_spec.rb:11:in `block (3 levels) in <top (required)>'
+
+  2) BookInStock getters and setters should set price [10 points]
+     Failure/Error: before(:each)  { @book = BookInStock.new('isbn1', 33.8) }
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:11:in `initialize'
+     # ./spec/part3_spec.rb:11:in `new'
+     # ./spec/part3_spec.rb:11:in `block (3 levels) in <top (required)>'
+
+  3) BookInStock getters and setters should be able to change ISBN [10 points]
+     Failure/Error: before(:each)  { @book = BookInStock.new('isbn1', 33.8) }
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:11:in `initialize'
+     # ./spec/part3_spec.rb:11:in `new'
+     # ./spec/part3_spec.rb:11:in `block (3 levels) in <top (required)>'
+
+  4) BookInStock getters and setters should be able to change price [10 points]
+     Failure/Error: before(:each)  { @book = BookInStock.new('isbn1', 33.8) }
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:11:in `initialize'
+     # ./spec/part3_spec.rb:11:in `new'
+     # ./spec/part3_spec.rb:11:in `block (3 levels) in <top (required)>'
+
+  5) BookInStock #price_as_string should be defined
+     Failure/Error: expect(BookInStock.new('isbn1', 10)).to respond_to(:price_as_string)
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:40:in `initialize'
+     # ./spec/part3_spec.rb:40:in `new'
+     # ./spec/part3_spec.rb:40:in `block (3 levels) in <top (required)>'
+
+  6) BookInStock #price_as_string should display 33.95 as "$33.95" [10 points]
+     Failure/Error: expect(BookInStock.new('isbn11', 33.95).price_as_string).to eq('$33.95')
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:43:in `initialize'
+     # ./spec/part3_spec.rb:43:in `new'
+     # ./spec/part3_spec.rb:43:in `block (3 levels) in <top (required)>'
+
+  7) BookInStock #price_as_string should display 1.1 as $1.10 [10 points]
+     Failure/Error: expect(BookInStock.new('isbn11', 1.1).price_as_string).to eq('$1.10')
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:46:in `initialize'
+     # ./spec/part3_spec.rb:46:in `new'
+     # ./spec/part3_spec.rb:46:in `block (3 levels) in <top (required)>'
+
+  8) BookInStock #price_as_string should display 20 as $20.00 [10 points]
+     Failure/Error: expect(BookInStock.new('isbn11', 20).price_as_string).to eq('$20.00')
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:49:in `initialize'
+     # ./spec/part3_spec.rb:49:in `new'
+     # ./spec/part3_spec.rb:49:in `block (3 levels) in <top (required)>'
+
+Finished in 0.00383 seconds (files took 0.08797 seconds to load)
+12 examples, 8 failures
+
+Failed examples:
+
+rspec ./spec/part3_spec.rb:12 # BookInStock getters and setters should set ISBN [10 points]
+rspec ./spec/part3_spec.rb:15 # BookInStock getters and setters should set price [10 points]
+rspec ./spec/part3_spec.rb:18 # BookInStock getters and setters should be able to change ISBN [10 points]
+rspec ./spec/part3_spec.rb:22 # BookInStock getters and setters should be able to change price [10 points]
+rspec ./spec/part3_spec.rb:39 # BookInStock #price_as_string should be defined
+rspec ./spec/part3_spec.rb:42 # BookInStock #price_as_string should display 33.95 as "$33.95" [10 points]
+rspec ./spec/part3_spec.rb:45 # BookInStock #price_as_string should display 1.1 as $1.10 [10 points]
+rspec ./spec/part3_spec.rb:48 # BookInStock #price_as_string should display 20 as $20.00 [10 points]
+
+
+BookInStock
+  should be defined
+  getters and setters
+    should set ISBN [10 points]
+    should set price [10 points]
+    should be able to change ISBN [10 points]
+    should be able to change price [10 points]
+  constructor
+    should reject invalid ISBN number [10 points]
+    should reject zero price [10 points]
+    should reject negative price [10 points]
+  #price_as_string
+    should be defined
+    should display 33.95 as "$33.95" [10 points]
+    should display 1.1 as $1.10 [10 points]
+    should display 20 as $20.00 [10 points]
+
+Finished in 0.00464 seconds (files took 0.09128 seconds to load)
+12 examples, 0 failures
+
+---------------------------------- END -----------------------------------------
