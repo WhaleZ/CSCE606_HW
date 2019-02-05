@@ -1,0 +1,127 @@
+
+BookInStock
+  should be defined
+  getters and setters
+    should set ISBN [10 points] (FAILED - 1)
+    should set price [10 points] (FAILED - 2)
+    should be able to change ISBN [10 points] (FAILED - 3)
+    should be able to change price [10 points] (FAILED - 4)
+  constructor
+    should reject invalid ISBN number [10 points]
+    should reject zero price [10 points]
+    should reject negative price [10 points]
+  #price_as_string
+    should be defined (FAILED - 5)
+    should display 33.95 as "$33.95" [10 points] (FAILED - 6)
+    should display 1.1 as $1.10 [10 points] (FAILED - 7)
+    should display 20 as $20.00 [10 points] (FAILED - 8)
+
+Failures:
+
+  1) BookInStock getters and setters should set ISBN [10 points]
+     Failure/Error: before(:each)  { @book = BookInStock.new('isbn1', 33.8) }
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:11:in `initialize'
+     # ./spec/part3_spec.rb:11:in `new'
+     # ./spec/part3_spec.rb:11:in `block (3 levels) in <top (required)>'
+
+  2) BookInStock getters and setters should set price [10 points]
+     Failure/Error: before(:each)  { @book = BookInStock.new('isbn1', 33.8) }
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:11:in `initialize'
+     # ./spec/part3_spec.rb:11:in `new'
+     # ./spec/part3_spec.rb:11:in `block (3 levels) in <top (required)>'
+
+  3) BookInStock getters and setters should be able to change ISBN [10 points]
+     Failure/Error: before(:each)  { @book = BookInStock.new('isbn1', 33.8) }
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:11:in `initialize'
+     # ./spec/part3_spec.rb:11:in `new'
+     # ./spec/part3_spec.rb:11:in `block (3 levels) in <top (required)>'
+
+  4) BookInStock getters and setters should be able to change price [10 points]
+     Failure/Error: before(:each)  { @book = BookInStock.new('isbn1', 33.8) }
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:11:in `initialize'
+     # ./spec/part3_spec.rb:11:in `new'
+     # ./spec/part3_spec.rb:11:in `block (3 levels) in <top (required)>'
+
+  5) BookInStock #price_as_string should be defined
+     Failure/Error: expect(BookInStock.new('isbn1', 10)).to respond_to(:price_as_string)
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:40:in `initialize'
+     # ./spec/part3_spec.rb:40:in `new'
+     # ./spec/part3_spec.rb:40:in `block (3 levels) in <top (required)>'
+
+  6) BookInStock #price_as_string should display 33.95 as "$33.95" [10 points]
+     Failure/Error: expect(BookInStock.new('isbn11', 33.95).price_as_string).to eq('$33.95')
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:43:in `initialize'
+     # ./spec/part3_spec.rb:43:in `new'
+     # ./spec/part3_spec.rb:43:in `block (3 levels) in <top (required)>'
+
+  7) BookInStock #price_as_string should display 1.1 as $1.10 [10 points]
+     Failure/Error: expect(BookInStock.new('isbn11', 1.1).price_as_string).to eq('$1.10')
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:46:in `initialize'
+     # ./spec/part3_spec.rb:46:in `new'
+     # ./spec/part3_spec.rb:46:in `block (3 levels) in <top (required)>'
+
+  8) BookInStock #price_as_string should display 20 as $20.00 [10 points]
+     Failure/Error: expect(BookInStock.new('isbn11', 20).price_as_string).to eq('$20.00')
+
+     ArgumentError:
+       wrong number of arguments (given 2, expected 0)
+     # ./spec/part3_spec.rb:49:in `initialize'
+     # ./spec/part3_spec.rb:49:in `new'
+     # ./spec/part3_spec.rb:49:in `block (3 levels) in <top (required)>'
+
+Finished in 0.00383 seconds (files took 0.08797 seconds to load)
+12 examples, 8 failures
+
+Failed examples:
+
+rspec ./spec/part3_spec.rb:12 # BookInStock getters and setters should set ISBN [10 points]
+rspec ./spec/part3_spec.rb:15 # BookInStock getters and setters should set price [10 points]
+rspec ./spec/part3_spec.rb:18 # BookInStock getters and setters should be able to change ISBN [10 points]
+rspec ./spec/part3_spec.rb:22 # BookInStock getters and setters should be able to change price [10 points]
+rspec ./spec/part3_spec.rb:39 # BookInStock #price_as_string should be defined
+rspec ./spec/part3_spec.rb:42 # BookInStock #price_as_string should display 33.95 as "$33.95" [10 points]
+rspec ./spec/part3_spec.rb:45 # BookInStock #price_as_string should display 1.1 as $1.10 [10 points]
+rspec ./spec/part3_spec.rb:48 # BookInStock #price_as_string should display 20 as $20.00 [10 points]
+
+
+BookInStock
+  should be defined
+  getters and setters
+    should set ISBN [10 points]
+    should set price [10 points]
+    should be able to change ISBN [10 points]
+    should be able to change price [10 points]
+  constructor
+    should reject invalid ISBN number [10 points]
+    should reject zero price [10 points]
+    should reject negative price [10 points]
+  #price_as_string
+    should be defined
+    should display 33.95 as "$33.95" [10 points]
+    should display 1.1 as $1.10 [10 points]
+    should display 20 as $20.00 [10 points]
+
+Finished in 0.00464 seconds (files took 0.09128 seconds to load)
+12 examples, 0 failures
+

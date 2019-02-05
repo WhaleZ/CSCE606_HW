@@ -1,0 +1,59 @@
+
+#hello
+  should be defined
+  The hello method returns the correct string [30 points]
+
+#starts_with_consonant?
+  should be defined
+  classifies true cases [10 points]
+  classifies false cases [10 points]
+  works on the empty string [5 points]
+  works on nonletters [5 points]
+
+#binary_multiple_of_4?
+  should be defined
+  classifies valid binary numbers [30 points] (FAILED - 1)
+  rejects invalid binary numbers [10 points] (FAILED - 2)
+
+Failures:
+
+  1) #binary_multiple_of_4? classifies valid binary numbers [30 points]
+     Failure/Error: expect(binary_multiple_of_4?(string)).to be_truthy,  "Incorrect results for input: \"#{string}\""
+       Incorrect results for input: "1010101010100"
+     # ./spec/part2_spec.rb:48:in `block (3 levels) in <top (required)>'
+     # ./spec/part2_spec.rb:47:in `each'
+     # ./spec/part2_spec.rb:47:in `block (2 levels) in <top (required)>'
+
+  2) #binary_multiple_of_4? rejects invalid binary numbers [10 points]
+     Failure/Error: expect(binary_multiple_of_4?('')).to be_falsy, 'The empty string is not a valid binary number!'
+       The empty string is not a valid binary number!
+     # ./spec/part2_spec.rb:56:in `block (2 levels) in <top (required)>'
+
+Finished in 0.01479 seconds (files took 0.08824 seconds to load)
+10 examples, 2 failures
+
+Failed examples:
+
+rspec ./spec/part2_spec.rb:46 # #binary_multiple_of_4? classifies valid binary numbers [30 points]
+rspec ./spec/part2_spec.rb:54 # #binary_multiple_of_4? rejects invalid binary numbers [10 points]
+
+
+#hello
+  should be defined
+  The hello method returns the correct string [30 points]
+
+#starts_with_consonant?
+  should be defined
+  classifies true cases [10 points]
+  classifies false cases [10 points]
+  works on the empty string [5 points]
+  works on nonletters [5 points]
+
+#binary_multiple_of_4?
+  should be defined
+  classifies valid binary numbers [30 points]
+  rejects invalid binary numbers [10 points]
+
+Finished in 0.00489 seconds (files took 0.08883 seconds to load)
+10 examples, 0 failures
+
