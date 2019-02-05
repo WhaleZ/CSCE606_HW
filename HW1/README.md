@@ -1,4 +1,4 @@
-Ruby Intro
+Ruby Intro (Copied from this [repo](https://docs.moodle.org/36/en/Roles_FAQ))
 =============
 
 This 3-part homework gives some basic practice in Ruby as well as
