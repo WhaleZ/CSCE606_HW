@@ -1,0 +1,4 @@
+Name: Jingyu Zhao (赵敬宇)
+UIN: 128003831
+Homework 2 Github Link: https://github.com/WhaleZ/rottenpotatoes-rails-intro
+Heroku App Link: https://gentle-plains-73761.herokuapp.com/
