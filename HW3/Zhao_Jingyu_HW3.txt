@@ -1,0 +1,77 @@
+Name: Jingyu
+UIN: 128003831
+heroku Link: https://obscure-falls-67990.herokuapp.com/movies
+Github Link: https://github.com/WhaleZ/hw-acceptance-unit-test-cycle
+-------------------------------------------------------------------------------------
+Log:
+- cucumber features/search_by_director.feature
+
+Deprecated: Found tags option '~@wip'. Support for '~@tag' will be removed from the next release of Cucumber. Please use 'not @tag' instead.
+Using the default profile...
+Feature: search for movies by director
+  As a movie buff
+  So that I can find movies with my favorite director
+  I want to include and serach on director information in movies I enter
+
+  Background: movies in database      # features/search_by_director.feature:7
+    Given the following movies exist: # features/step_definitions/movies_steps.rb:2
+      | title        | rating | director     | release_date |
+      | Star Wars    | PG     | George Lucas | 1977-05-25   |
+      | Blade Runner | PG     | Ridley Scott | 1982-06-25   |
+      | Alien        | R      |              | 1979-05-25   |
+      | THX-1138     | R      | George Lucas | 1971-03-11   |
+
+  Scenario: add director to existing movie                # features/search_by_director.feature:16
+    When I go to the edit page for "Alien"                # features/step_definitions/web_steps.rb:48
+    And I fill in "Director" with "Ridley Scott"          # features/step_definitions/web_steps.rb:60
+    And I press "Update Movie Info"                       # features/step_definitions/web_steps.rb:52
+    Then the director of "Alien" should be "Ridley Scott" # features/step_definitions/movies_steps.rb:27
+
+  Scenario: find movie with same director                       # features/search_by_director.feature:22
+    Given I am on the details page for "Star Wars"              # features/step_definitions/web_steps.rb:44
+    When I follow "Find Movies With Same Director"              # features/step_definitions/web_steps.rb:56
+    Then I should be on the Similar Movies page for "Star Wars" # features/step_definitions/web_steps.rb:230
+    And I should see "THX-1138"                                 # features/step_definitions/web_steps.rb:105
+    But I should not see "Blade Runner"                         # features/step_definitions/web_steps.rb:123
+
+  Scenario: can't find similar movies if we don't know director (sad path) # features/search_by_director.feature:29
+    Given I am on the details page for "Alien"                             # features/step_definitions/web_steps.rb:44
+    Then I should not see "Ridley Scott"                                   # features/step_definitions/web_steps.rb:123
+    When I follow "Find Movies With Same Director"                         # features/step_definitions/web_steps.rb:56
+    Then I should be on the home page                                      # features/step_definitions/web_steps.rb:230
+    And I should see "'Alien' has no director info"                        # features/step_definitions/web_steps.rb:105
+
+3 scenarios (3 passed)
+17 steps (17 passed)
+0m0.436s
+Coverage report generated for Cucumber Features, RSpec to /Users/whalez/Documents/hw-acceptance-unit-test-cycle/rottenpotatoes/coverage. 45 / 59 LOC (76.27%) covered.
+
+-------------------------------------------------------------------------------------
+- rspec
+
+Randomized with seed 59842
+.....
+
+Deprecation Warnings:
+
+Requiring `rspec/autorun` when running RSpec via the `rspec` command is deprecated. Called from /Users/whalez/.rvm/gems/ruby-2.4.0/gems/activesupport-4.2.10/lib/active_support/dependencies.rb:274:in `require'.
+
+Using `should` from rspec-expectations' old `:should` syntax without explicitly enabling the syntax is deprecated. Use the new `:expect` syntax or explicitly enable `:should` with `config.expect_with(:rspec) { |c| c.syntax = :should }` instead. Called from /Users/whalez/Documents/hw-acceptance-unit-test-cycle/rottenpotatoes/spec/movies_controller_spec.rb:26:in `block (3 levels) in <top (required)>'.
+
+Using `stub` from rspec-mocks' old `:should` syntax without explicitly enabling the syntax is deprecated. Use the new `:expect` syntax or explicitly enable `:should` instead. Called from /Users/whalez/Documents/hw-acceptance-unit-test-cycle/rottenpotatoes/spec/movies_controller_spec.rb:24:in `block (3 levels) in <top (required)>'.
+
+
+If you need more of the backtrace for any of these deprecations to
+identify where to make the necessary changes, you can configure
+`config.raise_errors_for_deprecations!`, and it will turn the
+deprecation warnings into errors, giving you the full backtrace.
+
+3 deprecation warnings total
+
+Finished in 0.04552 seconds (files took 2.7 seconds to load)
+5 examples, 0 failures
+
+Randomized with seed 59842
+
+Coverage report generated for Cucumber Features, RSpec to /Users/whalez/Documents/hw-acceptance-unit-test-cycle/rottenpotatoes/coverage. 45 / 59 LOC (76.27%) covered.
+
