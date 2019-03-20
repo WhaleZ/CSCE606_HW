@@ -1,0 +1,193 @@
+Name: Jingyu Zhao
+UIN: 128003831
+Heroku Link: https://hidden-gorge-48470.herokuapp.com/setup
+Github Link: https://github.com/WhaleZ/typo
+-------------------------------------------------------------------------------------
+Log File: 
+ec2-user:~/environment/typo (master) $ bundle exec rake cucumber
+NOTICE:  CREATE TABLE will create implicit sequence "blogs_id_seq" for serial column "blogs.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "blogs_pkey" for table "blogs"
+NOTICE:  CREATE TABLE will create implicit sequence "categories_id_seq" for serial column "categories.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "categories_pkey" for table "categories"
+NOTICE:  CREATE TABLE will create implicit sequence "categorizations_id_seq" for serial column "categorizations.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "categorizations_pkey" for table "categorizations"
+NOTICE:  CREATE TABLE will create implicit sequence "contents_id_seq" for serial column "contents.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "contents_pkey" for table "contents"
+NOTICE:  CREATE TABLE will create implicit sequence "feedback_id_seq" for serial column "feedback.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "feedback_pkey" for table "feedback"
+NOTICE:  CREATE TABLE will create implicit sequence "notifications_id_seq" for serial column "notifications.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "notifications_pkey" for table "notifications"
+NOTICE:  CREATE TABLE will create implicit sequence "page_caches_id_seq" for serial column "page_caches.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "page_caches_pkey" for table "page_caches"
+NOTICE:  CREATE TABLE will create implicit sequence "pings_id_seq" for serial column "pings.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "pings_pkey" for table "pings"
+NOTICE:  CREATE TABLE will create implicit sequence "post_types_id_seq" for serial column "post_types.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "post_types_pkey" for table "post_types"
+NOTICE:  CREATE TABLE will create implicit sequence "profiles_id_seq" for serial column "profiles.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "profiles_pkey" for table "profiles"
+NOTICE:  CREATE TABLE will create implicit sequence "redirections_id_seq" for serial column "redirections.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "redirections_pkey" for table "redirections"
+NOTICE:  CREATE TABLE will create implicit sequence "redirects_id_seq" for serial column "redirects.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "redirects_pkey" for table "redirects"
+NOTICE:  CREATE TABLE will create implicit sequence "resources_id_seq" for serial column "resources.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "resources_pkey" for table "resources"
+NOTICE:  CREATE TABLE will create implicit sequence "rights_id_seq" for serial column "rights.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "rights_pkey" for table "rights"
+NOTICE:  CREATE TABLE will create implicit sequence "sidebars_id_seq" for serial column "sidebars.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "sidebars_pkey" for table "sidebars"
+NOTICE:  CREATE TABLE will create implicit sequence "sitealizer_id_seq" for serial column "sitealizer.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "sitealizer_pkey" for table "sitealizer"
+NOTICE:  CREATE TABLE will create implicit sequence "tags_id_seq" for serial column "tags.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "tags_pkey" for table "tags"
+NOTICE:  CREATE TABLE will create implicit sequence "text_filters_id_seq" for serial column "text_filters.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "text_filters_pkey" for table "text_filters"
+NOTICE:  CREATE TABLE will create implicit sequence "triggers_id_seq" for serial column "triggers.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "triggers_pkey" for table "triggers"
+NOTICE:  CREATE TABLE will create implicit sequence "users_id_seq" for serial column "users.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "users_pkey" for table "users"
+/home/ec2-user/.rvm/rubies/ruby-1.9.3-p551/bin/ruby -S bundle exec cucumber  --profile default
+Using the default profile...
+/home/ec2-user/.rvm/gems/ruby-1.9.3-p551/gems/activesupport-3.0.17/lib/active_support/dependencies.rb:242:in `block in require': iconv will be deprecated in the future, use String#encode instead.
+Feature: Create Blog
+  As an author
+  In order to gift my thoughts to the world
+  I want to create a blog
+
+  Scenario: Create blog page shown      # features/create_blog.feature:6
+    Given I am on the home page         # features/step_definitions/web_steps.rb:68
+    Then I should see "Welcome"         # features/step_definitions/web_steps.rb:129
+    And I should see "My Shiny Weblog!" # features/step_definitions/web_steps.rb:129
+
+  Scenario: Create blog page not shown when blog created # features/create_blog.feature:11
+    Given the blog is set up                             # features/step_definitions/web_steps.rb:34
+    When I am on the home page                           # features/step_definitions/web_steps.rb:68
+    Then I should not see "My Shiny Weblog!"             # features/step_definitions/web_steps.rb:147
+    And I should see "Teh Blag"                          # features/step_definitions/web_steps.rb:129
+
+Feature: Fix bugs on the categories sites by admin
+
+  Background:                            # features/create_edit_categories.feature:3
+    Given the blog is set up             # features/step_definitions/web_steps.rb:34
+    And I am logged into the admin panel # features/step_definitions/web_steps.rb:46
+
+  Scenario: Successfully create Categories         # features/create_edit_categories.feature:7
+    Given I am on the new categories page          # features/step_definitions/web_steps.rb:68
+    When I fill in "category_name" with "Foobar"   # features/step_definitions/web_steps.rb:84
+    And I fill in "category_keywords" with "haha"  # features/step_definitions/web_steps.rb:84
+    And I fill in "category_description" with "no" # features/step_definitions/web_steps.rb:84
+    And I press "Save"                             # features/step_definitions/web_steps.rb:76
+    Then I should see "Foobar"                     # features/step_definitions/web_steps.rb:129
+
+Feature: Write Articles
+  As a blog administrator
+  In order to share my thoughts with the world
+  I want to be able to add articles to my blog
+
+  Background:                            # features/write_article.feature:6
+    Given the blog is set up             # features/step_definitions/web_steps.rb:34
+    And I am logged into the admin panel # features/step_definitions/web_steps.rb:46
+
+  Scenario: Successfully write articles                                  # features/write_article.feature:10
+    Given I am on the new article page                                   # features/step_definitions/web_steps.rb:68
+    When I fill in "article_title" with "Foobar"                         # features/step_definitions/web_steps.rb:84
+    And I fill in "article__body_and_extended_editor" with "Lorem Ipsum" # features/step_definitions/web_steps.rb:84
+    And I press "Publish"                                                # features/step_definitions/web_steps.rb:76
+    Then I should be on the admin content page                           # features/step_definitions/web_steps.rb:254
+    When I go to the home page                                           # features/step_definitions/web_steps.rb:72
+    Then I should see "Foobar"                                           # features/step_definitions/web_steps.rb:129
+    When I follow "Foobar"                                               # features/step_definitions/web_steps.rb:80
+    Then I should see "Lorem Ipsum"                                      # features/step_definitions/web_steps.rb:129
+
+4 scenarios (4 passed)
+26 steps (26 passed)
+0m2.488s
+Coverage report generated for Cucumber Features, RSpec to /home/ec2-user/environment/typo/coverage. 11750 / 14832 LOC (79.22%) covered.
+ec2-user:~/environment/typo (master) $ bundle exec rake spec
+NOTICE:  CREATE TABLE will create implicit sequence "blogs_id_seq" for serial column "blogs.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "blogs_pkey" for table "blogs"
+NOTICE:  CREATE TABLE will create implicit sequence "categories_id_seq" for serial column "categories.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "categories_pkey" for table "categories"
+NOTICE:  CREATE TABLE will create implicit sequence "categorizations_id_seq" for serial column "categorizations.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "categorizations_pkey" for table "categorizations"
+NOTICE:  CREATE TABLE will create implicit sequence "contents_id_seq" for serial column "contents.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "contents_pkey" for table "contents"
+NOTICE:  CREATE TABLE will create implicit sequence "feedback_id_seq" for serial column "feedback.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "feedback_pkey" for table "feedback"
+NOTICE:  CREATE TABLE will create implicit sequence "notifications_id_seq" for serial column "notifications.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "notifications_pkey" for table "notifications"
+NOTICE:  CREATE TABLE will create implicit sequence "page_caches_id_seq" for serial column "page_caches.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "page_caches_pkey" for table "page_caches"
+NOTICE:  CREATE TABLE will create implicit sequence "pings_id_seq" for serial column "pings.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "pings_pkey" for table "pings"
+NOTICE:  CREATE TABLE will create implicit sequence "post_types_id_seq" for serial column "post_types.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "post_types_pkey" for table "post_types"
+NOTICE:  CREATE TABLE will create implicit sequence "profiles_id_seq" for serial column "profiles.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "profiles_pkey" for table "profiles"
+NOTICE:  CREATE TABLE will create implicit sequence "redirections_id_seq" for serial column "redirections.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "redirections_pkey" for table "redirections"
+NOTICE:  CREATE TABLE will create implicit sequence "redirects_id_seq" for serial column "redirects.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "redirects_pkey" for table "redirects"
+NOTICE:  CREATE TABLE will create implicit sequence "resources_id_seq" for serial column "resources.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "resources_pkey" for table "resources"
+NOTICE:  CREATE TABLE will create implicit sequence "rights_id_seq" for serial column "rights.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "rights_pkey" for table "rights"
+NOTICE:  CREATE TABLE will create implicit sequence "sidebars_id_seq" for serial column "sidebars.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "sidebars_pkey" for table "sidebars"
+NOTICE:  CREATE TABLE will create implicit sequence "sitealizer_id_seq" for serial column "sitealizer.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "sitealizer_pkey" for table "sitealizer"
+NOTICE:  CREATE TABLE will create implicit sequence "tags_id_seq" for serial column "tags.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "tags_pkey" for table "tags"
+NOTICE:  CREATE TABLE will create implicit sequence "text_filters_id_seq" for serial column "text_filters.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "text_filters_pkey" for table "text_filters"
+NOTICE:  CREATE TABLE will create implicit sequence "triggers_id_seq" for serial column "triggers.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "triggers_pkey" for table "triggers"
+NOTICE:  CREATE TABLE will create implicit sequence "users_id_seq" for serial column "users.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "users_pkey" for table "users"
+/home/ec2-user/.rvm/rubies/ruby-1.9.3-p551/bin/ruby -S rspec ./spec/helpers/application_helper_spec.rb ./spec/helpers/sidebar_helper_spec.rb ./spec/helpers/author_helper_spec.rb ./spec/helpers/grouping_helper_spec.rb ./spec/controllers/xml_controller_spec.rb ./spec/controllers/articles_controller_spec.rb ./spec/controllers/backend_controller_spec.rb ./spec/controllers/authors_controller_spec.rb ./spec/controllers/grouping_controller_spec.rb ./spec/controllers/setup_controller_spec.rb ./spec/controllers/tags_controller_spec.rb ./spec/controllers/application_controller_spec.rb ./spec/controllers/categories_controller_spec.rb ./spec/controllers/admin/users_controller_spec.rb ./spec/controllers/admin/resources_controller_spec.rb ./spec/controllers/admin/cache_controller_spec.rb ./spec/controllers/admin/settings_controller_spec.rb ./spec/controllers/admin/pages_controller_spec.rb ./spec/controllers/admin/textfilters_controller_spec.rb ./spec/controllers/admin/tags_controller_spec.rb ./spec/controllers/admin/categories_controller_spec.rb ./spec/controllers/admin/seo_controller_spec.rb ./spec/controllers/admin/feedback_controller_spec.rb ./spec/controllers/admin/redirects_controller_spec.rb ./spec/controllers/admin/profiles_controller_spec.rb ./spec/controllers/admin/sidebar_controller_spec.rb ./spec/controllers/admin/dashboard_controller_spec.rb ./spec/controllers/admin/post_types_controller_spec.rb ./spec/controllers/admin/themes_controller_spec.rb ./spec/controllers/admin/content_controller_spec.rb ./spec/controllers/comments_controller_spec.rb ./spec/controllers/theme_controller_spec.rb ./spec/controllers/trackbacks_controller_spec.rb ./spec/controllers/accounts_controller_spec.rb ./spec/lib/text_filter_plugin_spec.rb ./spec/lib/transforms_spec.rb ./spec/views/articles/feedback_atom_feed_spec.rb ./spec/views/articles/read_spec.rb ./spec/views/articles/index_spec.rb ./spec/views/articles/index_rss_feed_spec.rb ./spec/views/articles/feedback_rss_feed_spec.rb ./spec/views/articles/index_atom_feed_spec.rb ./spec/views/admin/content/new_spec.rb ./spec/views/admin/pages/new_spec.rb ./spec/views/shared/_atom_header_spec.rb ./spec/views/trackbacks/index_rss_feed_spec.rb ./spec/views/trackbacks/index_atom_feed_spec.rb ./spec/views/comments/html_sanitization_spec.rb ./spec/views/comments/index_rss_feed_spec.rb ./spec/views/comments/index_atom_feed_spec.rb ./spec/views/authors/show_rss_feed_spec.rb ./spec/views/authors/show_atom_feed_spec.rb ./spec/views/layouts/default_spec.rb ./spec/models/category_spec.rb ./spec/models/tag_spec.rb ./spec/models/comment_spec.rb ./spec/models/text_filter_spec.rb ./spec/models/article_closing_spec.rb ./spec/models/cache_support_spec.rb ./spec/models/page_cache_spec.rb ./spec/models/post_type_spec.rb ./spec/models/trigger_spec.rb ./spec/models/trackback_spec.rb ./spec/models/resource_spec.rb ./spec/models/ping_spec.rb ./spec/models/page_spec.rb ./spec/models/ping_pinger_spec.rb ./spec/models/route_cache_spec.rb ./spec/models/amazon_sidebar_spec.rb ./spec/models/static_sidebar_spec.rb ./spec/models/sidebar_spec.rb ./spec/models/configuration_spec.rb ./spec/models/user_spec.rb ./spec/models/theme_spec.rb ./spec/models/blog_spec.rb ./spec/models/notification_spec.rb ./spec/models/content_spec.rb ./spec/models/redirect_spec.rb ./spec/models/article_spec.rb ./spec/models/content_state/feedback_states_spec.rb ./spec/routing/xml_routing_spec.rb ./spec/routing/articles_routing_spec.rb
+/home/ec2-user/.rvm/gems/ruby-1.9.3-p551/gems/activesupport-3.0.17/lib/active_support/dependencies.rb:242:in `block in require': iconv will be deprecated in the future, use String#encode instead.
+................................................................................................................................................................................................*..*.....................*.*.*.........................................*........................................................................................................................................................................................................................*.....................................................Not validating feed because no validator (feedvalidator in python) is installed
+...Not validating feed because no validator (feedvalidator in python) is installed
+..................................................................................................................Not validating feed because no validator (feedvalidator in python) is installed
+.................Not validating feed because no validator (feedvalidator in python) is installed
+.Not validating feed because no validator (feedvalidator in python) is installed
+.....Not validating feed because no validator (feedvalidator in python) is installed
+.....................Not validating feed because no validator (feedvalidator in python) is installed
+..Not validating feed because no validator (feedvalidator in python) is installed
+..............................................................................................Not validating feed because no validator (feedvalidator in python) is installed
+..Not validating feed because no validator (feedvalidator in python) is installed
+....Not validating feed because no validator (feedvalidator in python) is installed
+....Not validating feed because no validator (feedvalidator in python) is installed
+...........................................................................................................................................................................................................................................................................................................................................................*..............................*..................................................
+
+Pending:
+  TagsController /index if :index template exists should render :index
+    # Stubbing #template_exists is not enough to fool Rails
+    # ./spec/controllers/tags_controller_spec.rb:23
+  TagsController showing a single tag with some articles should render :show by default
+    # Stubbing #template_exists is not enough to fool Rails
+    # ./spec/controllers/tags_controller_spec.rb:60
+  CategoriesController /index if :index template exists should render :index
+    # Stubbing #template_exists is not enough to fool Rails
+    # ./spec/controllers/categories_controller_spec.rb:30
+  CategoriesController#show should render :show by default
+    # Stubbing #template_exists is not enough to fool Rails
+    # ./spec/controllers/categories_controller_spec.rb:62
+  CategoriesController#show should render personal when template exists
+    # Stubbing #template_exists is not enough to fool Rails
+    # ./spec/controllers/categories_controller_spec.rb:77
+  Admin::PagesController should create a page published in the future without a redirect
+    # :published_at parameter is currently ignored
+    # ./spec/controllers/admin/pages_controller_spec.rb:120
+  ThemeController disabled_test_javascript
+    # Not yet implemented
+    # ./spec/controllers/theme_controller_spec.rb:35
+  Article test_triggers_are_dependent
+    # Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI
+    # ./spec/models/article_spec.rb:286
+  Article with tags lets the tag collection survive a load-save cycle
+    # Not yet implemented
+    # ./spec/models/article_spec.rb:241
+
+Finished in 1 minute 11.47 seconds
+1230 examples, 0 failures, 9 pending
+Coverage report generated for Cucumber Features, RSpec to /home/ec2-user/environment/typo/coverage. 13440 / 15011 LOC (89.53%) covered.
